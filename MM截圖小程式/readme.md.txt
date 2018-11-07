@@ -3,8 +3,9 @@
 * 在剪貼工具按 ctrl+v 可呼叫 mm client 並貼上圖片。
 
 # How to use
-* 建議將此程式複製回本機電腦執行。
+* 將此程式複製回本機電腦執行。
 * 設定為開機時啟動
+    * 若有安裝舊版本，執行 "ahk PrtScr2Snipping_Uninstall" 將舊版本移除。
     * 第一次啟動程式時請點擊右鍵選擇 "以系統管理員身分執行"，將自動建立捷徑。
         * 若自動建立捷徑失敗將打開 windows 啟動路徑，須自行按 ctrl+v 貼上。    
 * 按printscreen - 啟動剪貼工具，若已啟動則重新擷取。可使用畫筆於圖片上註記編輯。
@@ -16,3 +17,8 @@
         alt ahk PrtScr2Snipping.exe
         shift ahk PrtScr2Snipping.exe
     並如第二點以管理員身分重新執行一次即可。
+
+# Whats New
+* v.0.9 2018/11/07
+ * 從 windows snipping 改為 line 截圖工具。
+ * Ctrl+v 會造成加註後的圖片全黑，改為 Ctrl+c。

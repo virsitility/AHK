@@ -2,9 +2,15 @@
 #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 ; SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-; 2018/06/22
-; made by csc v. 0.1
-;
+; 
+; v.0.9 2018/11/07
+;  - 從 windows snipping 改為 line 截圖工具
+;  - Ctrl+v 會造成加註後的圖片全黑，改為 Ctrl+c
+; v.0.1 2018/06/22
+;  - made by csc 
+;=====================================================
+
+
 ; 啟動程式時檢測 Win startup 中是否已有捷徑並建立；若無法建立捷徑則開啟路徑並貼上
 SplitPath, A_Scriptname, , , , OutNameNoExt 
 LinkFile=%A_StartupCommon%\%OutNameNoExt%.lnk 
@@ -36,9 +42,13 @@ return
 
 
 ; 啟動剪貼工具，若已啟動則重新擷取
-MyLabel:
+MyLabel:    
     WinGet, id, ID, ahk_exe SnippingTool.exe
-	if (id = "") {
+    WinGet, idLine, ID, ahk_class Qt5QWindowIcon
+    if (idLine != "") {
+        ControlSend,,^p,ahk_class Qt5QWindowIcon
+    }
+    else if (id = "") {
 		run SnippingTool.exe
 	}
 	else {
@@ -48,11 +58,14 @@ MyLabel:
 return
 
 ; 若有安裝mm程式，則切換視窗並貼上
-~$^v::
-    if WinActive("ahk_exe SnippingTool.exe")
+~^c::   ; 用^v會產生黑畫面情況故改為^c
+    if WinActive("ahk_class Qt5QWindowToolSaveBits")    ;Qt5QWindowToolTipSaveBits
     {
+        ;send ^c
+        ;ControlSend,,^c,ahk_class Qt5QWindowToolSaveBits
+        ;msgbox, yes
         IfWinExist, ahk_exe Mattermost.exe
-        {
+        {            
             WinActivate
             send ^+l
             send ^v
