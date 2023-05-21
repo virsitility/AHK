@@ -1,6 +1,5 @@
 ﻿CoordMode, Mouse, Client                                ; 讓mouse參數不加入win視窗外框
 ; CTRL+B poe.trade 自動切換密語
-; CTRL+ALT+B 設定出價自定直密賣家句尾文字
 
 ; F2 丟倉 買回卷（可用shift買一組）
 ; Alt+r 回藏身處
@@ -102,75 +101,6 @@ checkAffixResult(clip, affixWord){
 	}
 	return
 }
-
-
-; CTRL+B 拍賣網直密賣家	
-^b::
-	WinGet, winid ,, A
-	click	
-	IfWinExist, ahk_class POEWindowClass
-		WinActivate ; 使用前面找到的窗口
-	if (price = ""){
-		; click, right, down
-		; sendinput, {enter}^v{enter}
-		; click, right, up
-		; sendinput, {enter}^v{enter}
-
-		Send {enter}
-		sleep 200
-		send {CtrlDown}v{CtrlUp}
-		send {enter}
-	} 
-	else {
-		Send {enter}
-		sleep 100
-		send {CtrlDown}v{CtrlUp}
-		Send {enter}
-		Send {enter}
-		Clipboard := price
-		send {CtrlDown}v{CtrlUp}
-		send {enter}
-		;ClipBoard := ClipBoard . "====>" . price
-	}
-
-	;WinActivate ahk_id %winid%
-return
-
-; CTRL+ALT+B 自定直密賣家句尾文字
-^!b::
-	InputBox, price, 出價, 出價,,,,,,,, %price%
-return
-; =================================================================================================
-#IfWinActive ahk_class POEWindowClass		; 只對POE視窗起作用
-; ================================================================================================
-
-; $RButton::
-; 	; KeyIsDown := GetKeyState("RButton","P")
-; 	loop{	
-; 		send {RButton}
-; 				sleep 100
-; 		if (!GetKeyState("RButton","P"))	; 若送入的按鍵未被按住則中斷迴圈
-; 			{
-; 				send {RButton up}
-; 				break			; 中斷
-; 			}
-; 	}
-; return
-
-; 左建連點
-; $LButton::
-; 	; KeyIsDown := GetKeyState("RButton","P")
-; 	loop{	
-; 		send {LButton}
-; 				sleep 100
-; 		if (!GetKeyState("LButton","P"))	; 若送入的按鍵未被按住則中斷迴圈
-; 			{
-; 				send {LButton up}
-; 				break			; 中斷
-; 			}
-; 	}
-; return
-
 
 
 ; 工藝台珠寶洗色
