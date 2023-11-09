@@ -17,6 +17,7 @@
 ;; CTRL+滑鼠4 CTRL+滑鼠5
 ; F11 洗改造增幅 CTRL+F11 關閉
 ; ritual ctrl+右鍵 暫緩
+#IfWinActive ahk_class POEWindowClass		; 只對POE視窗起作用
 
 
 ; $ins:: suspend
