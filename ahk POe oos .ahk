@@ -1,4 +1,7 @@
 ﻿CoordMode, Mouse, Client                                ; 讓mouse參數不加入win視窗外框
+#IfWinActive ahk_class POEWindowClass		; 只對POE視窗起作用
+
+
 ; CTRL+B poe.trade 自動切換密語
 
 ; F2 丟倉 買回卷（可用shift買一組）
